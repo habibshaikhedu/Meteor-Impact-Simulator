@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Meteor Impact Simulator</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="style.css">
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</head>
+
+<body class="bg-gray-900 text-white flex">
+  <!-- Control Panel -->
+  <div class="w-1/4 p-5 flex flex-col bg-gray-800 space-y-4 overflow-y-auto max-h-screen">
+    <h1 class="text-2xl font-bold text-center mb-4">🌠 Meteor Impact Simulator</h1>
+
+    <label>Choose Asteroid (from NASA):</label>
+    <select id="asteroidSelect" class="p-2 rounded text-black">
+      <option>Loading asteroids...</option>
+    </select>
+
+    <label>Diameter (m):</label>
+    <input id="diameter" type="number" value="50" class="p-2 rounded text-black">
+
+    <label>Speed (km/s):</label>
+    <input id="speed" type="number" value="20" class="p-2 rounded text-black">
+
+    <label>Angle (°):</label>
+    <input id="angle" type="number" value="45" class="p-2 rounded text-black">
+
+    <button id="simulate" class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-2 rounded">Simulate</button>
+    <button id="reset" class="bg-red-500 hover:bg-red-600 text-white font-semibold py-2 rounded">Reset</button>
+
+
+    <div id="result" class="text-sm mt-4 text-gray-300"></div>
+    <div>
+      <b>Legend:</b><br>
+      🔴 High Damage<br>
+      🟠 Medium Damage<br>
+      🟢 Low Damage
+    </div>
+  </div>
+  </div>
+
+  <button id="infoBtn" class="absolute top-2 right-2 bg-gray-700 text-white p-2 rounded-md text-sm hover:bg-gray-600 z-50" style="z-index: 5000;">
+  ℹ️ Info
+</button>
+
+  <!-- Map -->
+  <div id="map" class="w-3/4 relative"></div>
+ <!-- INFO MODAL -->
+<div id="infoModal"
+     style="z-index:5000;"
+     class="hidden fixed inset-0 flex items-center justify-center bg-black bg-opacity-70">
+  <div id="infoBox"
+       class="bg-gray-800 text-white p-6 rounded-lg shadow-xl w-96 relative z-[6000] border border-blue-400">
+    <button id="closeInfo" class="absolute top-2 right-3 text-xl hover:text-red-400">&times;</button>
+    <h2 class="text-lg font-bold mb-2">About Meteor Madness</h2>
+    <p class="text-sm mb-2">This simulator uses NASA’s open data to model asteroid impacts.</p>
+    <ul class="list-disc list-inside text-sm mb-3 text-gray-300">
+      <li><b>NeoWs API:</b> Near-Earth Object data</li>
+      <li><b>SBDB:</b> NASA JPL Small-Body Data base API</li>
+      <li><b>NASA EONET:</b> Earth Observatory </li>
+      <li><b>DART Mission:</b> Deflection reference</li>
+    </ul>
+    <p class="text-xs text-gray-400">Built for NASA Space Apps Challenge 2025</p>
+  </div>
+</div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
